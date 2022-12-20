@@ -1,4 +1,4 @@
-package lesson11.labs.prob1;
+package lesson10.labs.prob1;
 import java.util.*;
 
 public class GroupUtil {
