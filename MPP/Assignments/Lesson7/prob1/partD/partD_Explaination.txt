@@ -1,0 +1,10 @@
+The output is wrong because the 'hashCode' method of Employee class
+generate the hash from all attributes which include 'visited' field.
+
+But when adding item into the 'tracker' hash map,
+the program changes the value of the 'visited' field of the item inside the 'tracker' hash map.
+This action changes the hash of the item inside the 'tracker' hash map.
+
+Therefore, when the program check if an item is contained in the 'tracker' hash map or not,
+it might find that the hash of checking item is different from the hash of all items in the 'tracker' hash map.
+Then that duplicated item will not be removed from the original list.

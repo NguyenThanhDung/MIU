@@ -1,0 +1,7 @@
+The output is wrong because the 'equals' method of the Employee class doesn't override the 'equals' method of Object class.
+Therefore, the 'contains' method of the ArrayList will call the 'equals' method of the Object class instead of
+the 'equals' method of the Employee class.
+But the 'equals' method of the Object class will compare the object addresses instead of the Employee attributes.
+That causes the 'contains' method of the ArrayList always return false.
+So the program cannot find any item in the 'answer' list that is also in the 'dupsRemoved' list.
+That's why the 'listsAreEqual' method returns the result that 2 lists are different.
