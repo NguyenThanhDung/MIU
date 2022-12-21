@@ -2,6 +2,7 @@ package prob8;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -26,7 +27,7 @@ public class PuttingIntoPractice {
         // Query 1: Find all transactions from year 2011 and sort them by value (small to high).
         List<Transaction> transactions2011 = transactions.stream()
                 .filter(t -> t.getYear() == 2011)
-                .sorted((t1, t2) -> t1.getValue() - t2.getValue())
+                .sorted(Comparator.comparing(Transaction::getValue))
                 .collect(Collectors.toList());
         System.out.println(transactions2011);
 
