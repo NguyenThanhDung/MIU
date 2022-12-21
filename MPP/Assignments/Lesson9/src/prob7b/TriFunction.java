@@ -1,4 +1,4 @@
-package Prob7b;
+package prob7b;
 
 @FunctionalInterface
 public interface TriFunction<S,T,U,R> {

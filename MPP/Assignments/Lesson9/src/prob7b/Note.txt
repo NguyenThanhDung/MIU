@@ -1,5 +1,0 @@
-b) Identity the inputs of the problem (a),
-Convert into the Suitable Functional Interface.
-Create a Lambda implementation of Fucntional interface and
-decalred as public static final inside Lambda Library class.
-Whenever needed call from the Lambda libary class.

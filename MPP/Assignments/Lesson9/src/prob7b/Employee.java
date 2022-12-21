@@ -1,4 +1,4 @@
-package Prob7b;
+package prob7b;
 
 public class Employee {
 	String firstName, lastName;

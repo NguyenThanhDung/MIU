@@ -1,4 +1,4 @@
-package Prob7b;
+package prob7b;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -16,13 +16,9 @@ public class Main {
 		                  new Employee("Thomas", "Blake", 111000),
 		                  new Employee("Alice", "Richards", 101000),
 		                  new Employee("Donald", "Trump", 100000));
-
-		String result = list.stream().filter(e -> e.getSalary() > 100000)
-				.filter(e -> e.getLastName().compareTo("N") > 0)
-				.map(e -> e.getFirstName() + " " + e.getLastName())
-				.sorted()
-				.collect(Collectors.joining(", "));
-		System.out.println(result);
+		
+		String filteredNames = LambdaLibrary.NAMES_EMPLOYEES.apply(list, 100000, 'N');
+		System.out.println(filteredNames);
 	}
 
 }
