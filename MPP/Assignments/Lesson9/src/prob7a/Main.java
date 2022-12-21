@@ -1,4 +1,4 @@
-package Prob7a;
+package prob7a;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -19,7 +19,7 @@ public class Main {
 		
 		//your stream pipeline here
 		String result = list.stream().filter(e -> e.getSalary() > 100000)
-				.filter(e -> e.getLastName().compareTo("N") > 0)
+				.filter(e -> e.getLastName().compareTo("N") >= 0)
 				.map(e -> e.getFirstName() + " " + e.getLastName())
 				.sorted()
 				.collect(Collectors.joining(", "));
