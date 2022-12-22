@@ -1,4 +1,4 @@
-package Prob2;
+package prob2;
 
 import java.util.Arrays;
 import java.util.IntSummaryStatistics;

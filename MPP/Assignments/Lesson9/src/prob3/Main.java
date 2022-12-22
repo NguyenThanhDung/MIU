@@ -1,4 +1,4 @@
-package Prob3;
+package prob3;
 
 import java.util.ArrayList;
 import java.util.Arrays;

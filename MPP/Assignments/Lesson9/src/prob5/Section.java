@@ -1,4 +1,4 @@
-package Prob5;
+package prob5;
 
 import java.util.Arrays;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package Prob4;
+package prob4;
 
 import java.util.stream.IntStream;
 
