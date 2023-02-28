@@ -10,7 +10,7 @@ public class Main {
         System.out.println("MAPPER:");
         System.out.println(mapper);
 
-        Reducer reducer = new Reducer(mapper.list);
+        Reducer reducer = new Reducer(mapper.Output());
         System.out.println("REDUCER:");
         System.out.println(reducer);
     }

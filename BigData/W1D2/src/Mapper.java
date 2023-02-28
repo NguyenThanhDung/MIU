@@ -6,7 +6,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Mapper {
-    public ArrayList<Pair> list;
+    private ArrayList<Pair> list;
 
     public Mapper(String inputFile) {
         this.list = new ArrayList<Pair>();
@@ -31,6 +31,10 @@ public class Mapper {
             Pair pair = new Pair(word.toLowerCase(), 1);
             this.list.add(pair);
         }
+    }
+
+    public ArrayList<Pair> Output() {
+        return this.list;
     }
 
     public String toString() {
