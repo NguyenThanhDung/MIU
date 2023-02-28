@@ -6,17 +6,19 @@ import java.nio.file.Paths;
 
 public class Main {
     public static void main(String[] args) {
-        Path path = Paths.get(System.getProperty("user.dir"), "input.txt");
-        System.out.println(path);
+        Mapper mapper = new Mapper();
         try {
+            Path path = Paths.get(System.getProperty("user.dir"), "input.txt");
             FileReader fileReader = new FileReader(path.toString());
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line;
-            while((line = bufferedReader.readLine()) != null) {
-                System.out.println(line);
+            while ((line = bufferedReader.readLine()) != null) {
+                mapper.Insert(line);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        System.out.println(mapper.toString());
     }
 }
