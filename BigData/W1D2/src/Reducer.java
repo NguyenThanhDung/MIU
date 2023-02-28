@@ -1,9 +1,10 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Reducer {
     ArrayList<GroupByPair> list;
 
-    public Reducer(ArrayList<Pair> input) {
+    public Reducer(List<Pair> input) {
         this.list = new ArrayList<GroupByPair>();
         for (Pair pair : input) {
             boolean found = false;

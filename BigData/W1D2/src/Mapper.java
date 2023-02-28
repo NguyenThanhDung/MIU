@@ -4,9 +4,12 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Mapper {
-    private ArrayList<Pair> list;
+    private List<Pair> list;
 
     public Mapper(String inputFile) {
         this.list = new ArrayList<Pair>();
@@ -31,9 +34,10 @@ public class Mapper {
             Pair pair = new Pair(word.toLowerCase(), 1);
             this.list.add(pair);
         }
+        this.list = this.list.stream().sorted((a,b) -> a.key.compareTo(b.key)).collect(Collectors.toList());
     }
 
-    public ArrayList<Pair> Output() {
+    public List<Pair> Output() {
         return this.list;
     }
 
