@@ -24,13 +24,13 @@ public class Reducer {
     public String toString() {
         String output = "";
         for(GroupByPair groupByPair : this.list) {
-            output += "(" + groupByPair.key + ",[";
+            output += "< " + groupByPair.key + " , [";
             for(int i = 0; i < groupByPair.values.size(); i++) {
                 output += groupByPair.values.get(i);
                 if(i < groupByPair.values.size() - 1)
-                    output += ",";
+                    output += ", ";
             }
-            output += "])\n";
+            output += "] >\n";
         }
         return output;
     }
@@ -38,12 +38,12 @@ public class Reducer {
     public String Sum() {
         String output = "";
         for(GroupByPair groupByPairair : this.list) {
-            output += "(" + groupByPairair.key + ",";
+            output += "< " + groupByPairair.key + " , ";
 
             int sum = 0;
             for(int value : groupByPairair.values)
                 sum += value;
-            output += sum + ")\n";
+            output += sum + " >\n";
         }
         return output;
     }

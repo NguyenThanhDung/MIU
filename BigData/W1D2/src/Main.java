@@ -7,14 +7,14 @@ import java.nio.file.Paths;
 public class Main {
     public static void main(String[] args) {
         Mapper mapper = new Mapper("input.txt");
-        System.out.println("MAPPER:");
+        System.out.println("Mapper Output");
         System.out.println(mapper);
 
         Reducer reducer = new Reducer(mapper.Output());
-        System.out.println("REDUCER:");
+        System.out.println("Reducer Input");
         System.out.println(reducer);
 
-        System.out.println("SUM:");
+        System.out.println("Reducer Output");
         System.out.println(reducer.Sum());
     }
 }
