@@ -12,7 +12,7 @@ public class Mapper {
         for (String word : words) {
             if (word.isEmpty())
                 continue;
-            Pair pair = new Pair(word, 1);
+            Pair pair = new Pair(word.toLowerCase(), 1);
             this.list.add(pair);
         }
     }
