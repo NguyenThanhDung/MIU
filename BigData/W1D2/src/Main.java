@@ -19,6 +19,11 @@ public class Main {
             e.printStackTrace();
         }
 
-        System.out.println(mapper.toString());
+        System.out.println("MAPPER:");
+        System.out.println(mapper);
+
+        Reducer reducer = new Reducer(mapper.list);
+        System.out.println("REDUCER:");
+        System.out.println(reducer);
     }
 }
