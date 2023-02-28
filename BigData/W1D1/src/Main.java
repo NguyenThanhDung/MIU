@@ -6,7 +6,7 @@ import java.nio.file.Paths;
 
 public class Main {
     public static void main(String[] args) {
-        Mapper mapper = new Mapper("input.txt");
-        System.out.println(mapper.toString());
+        Mapper mapper = new Mapper("testDataForW1D1.txt");
+        System.out.println(mapper);
     }
 }
