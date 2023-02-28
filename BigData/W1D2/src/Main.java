@@ -13,5 +13,8 @@ public class Main {
         Reducer reducer = new Reducer(mapper.Output());
         System.out.println("REDUCER:");
         System.out.println(reducer);
+
+        System.out.println("SUM:");
+        System.out.println(reducer.Sum());
     }
 }

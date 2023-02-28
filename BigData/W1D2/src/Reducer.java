@@ -34,4 +34,17 @@ public class Reducer {
         }
         return output;
     }
+
+    public String Sum() {
+        String output = "";
+        for(GroupByPair groupByPairair : this.list) {
+            output += "(" + groupByPairair.key + ",";
+
+            int sum = 0;
+            for(int value : groupByPairair.values)
+                sum += value;
+            output += sum + ")\n";
+        }
+        return output;
+    }
 }
