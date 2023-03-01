@@ -4,21 +4,29 @@ import java.util.List;
 public class Reducer {
     ArrayList<GroupByPair> list;
 
+    public Reducer() {
+        this.list = new ArrayList<GroupByPair>();
+    }
+
     public Reducer(List<Pair> input) {
         this.list = new ArrayList<GroupByPair>();
         for (Pair pair : input) {
-            boolean found = false;
-            for (GroupByPair groupByPair : this.list) {
-                if (groupByPair.key.equals(pair.key)) {
-                    groupByPair.values.add(pair.value);
-                    found = true;
-                    break;
-                }
+            Add(pair);
+        }
+    }
+
+    public void Add(Pair pair) {
+        boolean found = false;
+        for (GroupByPair groupByPair : this.list) {
+            if (groupByPair.key.equals(pair.key)) {
+                groupByPair.values.add(pair.value);
+                found = true;
+                break;
             }
-            if (!found) {
-                GroupByPair groupByPair = new GroupByPair(pair.key, pair.value);
-                this.list.add(groupByPair);
-            }
+        }
+        if (!found) {
+            GroupByPair groupByPair = new GroupByPair(pair.key, pair.value);
+            this.list.add(groupByPair);
         }
     }
 

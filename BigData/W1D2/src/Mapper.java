@@ -34,7 +34,7 @@ public class Mapper {
             Pair pair = new Pair(word.toLowerCase(), 1);
             this.list.add(pair);
         }
-        this.list = this.list.stream().sorted((a,b) -> a.key.compareTo(b.key)).collect(Collectors.toList());
+//        this.list = this.list.stream().sorted((a,b) -> a.key.compareTo(b.key)).collect(Collectors.toList());
     }
 
     public List<Pair> Output() {
