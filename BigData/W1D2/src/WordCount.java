@@ -35,6 +35,12 @@ public class WordCount {
             System.out.println("Pairs sent to Reducer " + i);
             System.out.println(this.reducers[i].GetInputString());
         }
+
+        for(int i = 0; i < this.reducers.length; i++) {
+            this.reducers[i].Grouping();
+            System.out.println("Reducer " + i + " input:");
+            System.out.println(this.reducers[i].GetGroupedResultString());
+        }
     }
 
     public int getPartition(String key){

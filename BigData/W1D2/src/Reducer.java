@@ -22,7 +22,7 @@ public class Reducer {
         this.inputs.add(pair);
     }
 
-    public void Run() {
+    public void Grouping() {
         for(Pair pair : this.inputs) {
             boolean found = false;
             for (GroupByPair groupByPair : this.list) {
@@ -47,7 +47,7 @@ public class Reducer {
         return output;
     }
 
-    public String GetOutputString() {
+    public String GetGroupedResultString() {
         String output = "";
         for(GroupByPair groupByPair : this.list) {
             output += "< " + groupByPair.key + " , [";
