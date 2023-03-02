@@ -4,12 +4,13 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Mapper {
-    public ArrayList<Pair> list;
+    private List<Pair> list;
 
     public Mapper(String inputFile) {
-        this.list = new ArrayList<Pair>();
+        this.list = new ArrayList<>();
         try {
             Path path = Paths.get(System.getProperty("user.dir"), inputFile);
             FileReader fileReader = new FileReader(path.toString());
