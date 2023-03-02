@@ -7,38 +7,50 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Mapper {
-    private List<Pair> list;
+
+    private List<String> records;
+    private List<Pair> data;
 
     public Mapper(String inputFile) {
-        this.list = new ArrayList<>();
+        this.records = new ArrayList<>();
         try {
             Path path = Paths.get(System.getProperty("user.dir"), inputFile);
             FileReader fileReader = new FileReader(path.toString());
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line;
             while ((line = bufferedReader.readLine()) != null) {
-                Insert(line);
+                this.records.add(line);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void Insert(String text) {
-        String[] words = text.split("\\W");
+    public List<Pair> Run() {
+        Initialize();
+
+        for(String record : this.records) {
+            Map(record);
+        }
+
+        return Close();
+    }
+
+    private void Initialize() {
+        this.data = new ArrayList<>();
+    }
+
+    private void Map(String record) {
+        String[] words = record.split("\\W");
         for (String word : words) {
             if (word.isEmpty())
                 continue;
             Pair pair = new Pair(word.toLowerCase(), 1);
-            this.list.add(pair);
+            this.data.add(pair);
         }
     }
 
-    public String toString() {
-        String output = "";
-        for (Pair pair : this.list) {
-            output += pair.toString() + "\n";
-        }
-        return output;
+    private List<Pair> Close() {
+        return this.data;
     }
 }
