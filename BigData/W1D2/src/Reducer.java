@@ -4,15 +4,18 @@ import java.util.List;
 public class Reducer {
     List<Pair> inputs;
     List<GroupByPair> list;
+    List<Pair> outputs;
 
     public Reducer() {
         this.inputs = new ArrayList<>();
         this.list = new ArrayList<>();
+        this.outputs = new ArrayList<>();
     }
 
     public Reducer(List<Pair> input) {
         this.inputs = new ArrayList<>();
         this.list = new ArrayList<>();
+        this.outputs = new ArrayList<>();
         for (Pair pair : input) {
             Add(pair);
         }
@@ -39,6 +42,16 @@ public class Reducer {
         }
     }
 
+    public void GenerateOutput() {
+        for(GroupByPair groupByPairair : this.list) {
+            int sum = 0;
+            for(int value : groupByPairair.values)
+                sum += value;
+            Pair pair = new Pair(groupByPairair.key, sum);
+            this.outputs.add(pair);
+        }
+    }
+
     public String GetInputString() {
         String output = "";
         for (Pair pair : this.inputs) {
@@ -61,15 +74,10 @@ public class Reducer {
         return output;
     }
 
-    public String Sum() {
+    public String GetOutputString() {
         String output = "";
-        for(GroupByPair groupByPairair : this.list) {
-            output += "< " + groupByPairair.key + " , ";
-
-            int sum = 0;
-            for(int value : groupByPairair.values)
-                sum += value;
-            output += sum + " >\n";
+        for(Pair pair : this.outputs) {
+            output += pair.toString() + "\n";
         }
         return output;
     }

@@ -41,6 +41,12 @@ public class WordCount {
             System.out.println("Reducer " + i + " input:");
             System.out.println(this.reducers[i].GetGroupedResultString());
         }
+
+        for(int i = 0; i < this.reducers.length; i++) {
+            this.reducers[i].GenerateOutput();
+            System.out.println("Reducer " + i + " output:");
+            System.out.println(this.reducers[i].GetOutputString());
+        }
     }
 
     public int getPartition(String key){
