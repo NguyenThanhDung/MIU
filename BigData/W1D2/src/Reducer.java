@@ -2,35 +2,52 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Reducer {
-    ArrayList<GroupByPair> list;
+    List<Pair> inputs;
+    List<GroupByPair> list;
 
     public Reducer() {
-        this.list = new ArrayList<GroupByPair>();
+        this.inputs = new ArrayList<>();
+        this.list = new ArrayList<>();
     }
 
     public Reducer(List<Pair> input) {
-        this.list = new ArrayList<GroupByPair>();
+        this.inputs = new ArrayList<>();
+        this.list = new ArrayList<>();
         for (Pair pair : input) {
             Add(pair);
         }
     }
 
     public void Add(Pair pair) {
-        boolean found = false;
-        for (GroupByPair groupByPair : this.list) {
-            if (groupByPair.key.equals(pair.key)) {
-                groupByPair.values.add(pair.value);
-                found = true;
-                break;
+        this.inputs.add(pair);
+    }
+
+    public void Run() {
+        for(Pair pair : this.inputs) {
+            boolean found = false;
+            for (GroupByPair groupByPair : this.list) {
+                if (groupByPair.key.equals(pair.key)) {
+                    groupByPair.values.add(pair.value);
+                    found = true;
+                    break;
+                }
             }
-        }
-        if (!found) {
-            GroupByPair groupByPair = new GroupByPair(pair.key, pair.value);
-            this.list.add(groupByPair);
+            if (!found) {
+                GroupByPair groupByPair = new GroupByPair(pair.key, pair.value);
+                this.list.add(groupByPair);
+            }
         }
     }
 
-    public String toString() {
+    public String GetInputString() {
+        String output = "";
+        for (Pair pair : this.inputs) {
+            output += pair.toString() + "\n";
+        }
+        return output;
+    }
+
+    public String GetOutputString() {
         String output = "";
         for(GroupByPair groupByPair : this.list) {
             output += "< " + groupByPair.key + " , [";

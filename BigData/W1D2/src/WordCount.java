@@ -33,7 +33,7 @@ public class WordCount {
 
         for(int i = 0; i < this.reducers.length; i++) {
             System.out.println("Pairs sent to Reducer " + i);
-            System.out.println(this.reducers[i]);
+            System.out.println(this.reducers[i].GetInputString());
         }
     }
 
