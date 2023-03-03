@@ -12,10 +12,7 @@ public class Reducer {
         this.outputs = new ArrayList<>();
     }
 
-    public Reducer(List<Pair> input) {
-        this.inputs = new ArrayList<>();
-        this.list = new ArrayList<>();
-        this.outputs = new ArrayList<>();
+    public void Receive(Pair[] input) {
         for (Pair pair : input) {
             Add(pair);
         }

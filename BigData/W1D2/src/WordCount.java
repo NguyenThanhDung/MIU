@@ -25,12 +25,12 @@ public class WordCount {
             this.mappers[i].Suffle(this);
         }
 
-//        for(int i = 0; i < this.reducers.length; i++) {
-//            for(int j = 0; j < this.mappers.length; j++) {
-//                this.reducers[i].Receive(this.mappers.Output(i));
-//            }
-//        }
-//
+        for(int i = 0; i < this.reducers.length; i++) {
+            for(int j = 0; j < this.mappers.length; j++) {
+                this.reducers[i].Receive(this.mappers[j].Output(i));
+            }
+        }
+
 //        for(int i = 0; i < this.reducers.length; i++) {
 //            this.reducers[i].Reduce();
 //        }

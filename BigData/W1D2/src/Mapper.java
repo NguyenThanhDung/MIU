@@ -56,13 +56,22 @@ public class Mapper {
         return this.data;
     }
 
+    public Pair[] Output(int reducerIndex) {
+        Pair[] output = new Pair[this.suffleMap[reducerIndex].size()];
+        for(int i = 0; i < this.suffleMap[reducerIndex].size(); i++) {
+            int pairIndex = this.suffleMap[reducerIndex].get(i);
+            output[i] = this.data.get(pairIndex);
+        }
+        return output;
+    }
+
     public void Suffle(WordCount wordCount) {
         this.suffleMap = new ArrayList[wordCount.numberOfReducer()];
+        for(int i = 0; i < this.suffleMap.length; i++)
+            this.suffleMap[i] = new ArrayList<>();
+
         for(int i = 0; i < this.data.size(); i++) {
             int reducerIndex = wordCount.getPartition(this.data.get(i).key);
-
-            if(this.suffleMap[reducerIndex] == null)
-                this.suffleMap[reducerIndex] = new ArrayList<>();
             this.suffleMap[reducerIndex].add(i);
         }
     }
