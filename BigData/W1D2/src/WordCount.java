@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class WordCount {
 
     private Mapper[] mappers;
@@ -34,9 +36,12 @@ public class WordCount {
         for(int i = 0; i < this.reducers.length; i++)
             this.reducers[i].Sort();
 
-//        for(int i = 0; i < this.reducers.length; i++) {
-//            this.reducers[i].Reduce();
-//        }
+        for(int i = 0; i < this.reducers.length; i++) {
+            List<Pair> result = this.reducers[i].Run();
+            System.out.println("Reducer " + i + " output:");
+            for(Pair pair : result)
+                System.out.println(pair);
+        }
     }
 
     public int getPartition(String key){
