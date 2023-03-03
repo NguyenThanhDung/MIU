@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class Mapper {
+public class Mapper<T, U> {
 
     private List<String> records;
     private List<Pair> data;
@@ -31,7 +31,7 @@ public class Mapper {
     public List<Pair> Run() {
         Initialize();
 
-        for(String record : this.records) {
+        for (String record : this.records) {
             Map(record);
         }
 
@@ -58,7 +58,7 @@ public class Mapper {
 
     public Pair[] Output(int reducerIndex) {
         Pair[] output = new Pair[this.suffleMap[reducerIndex].size()];
-        for(int i = 0; i < this.suffleMap[reducerIndex].size(); i++) {
+        for (int i = 0; i < this.suffleMap[reducerIndex].size(); i++) {
             int pairIndex = this.suffleMap[reducerIndex].get(i);
             output[i] = this.data.get(pairIndex);
         }
@@ -67,10 +67,10 @@ public class Mapper {
 
     public void Suffle(WordCount wordCount) {
         this.suffleMap = new ArrayList[wordCount.numberOfReducer()];
-        for(int i = 0; i < this.suffleMap.length; i++)
+        for (int i = 0; i < this.suffleMap.length; i++)
             this.suffleMap[i] = new ArrayList<>();
 
-        for(int i = 0; i < this.data.size(); i++) {
+        for (int i = 0; i < this.data.size(); i++) {
             int reducerIndex = wordCount.getPartition(this.data.get(i).key);
             this.suffleMap[reducerIndex].add(i);
         }
