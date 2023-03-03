@@ -31,6 +31,9 @@ public class WordCount {
             }
         }
 
+        for(int i = 0; i < this.reducers.length; i++)
+            this.reducers[i].Sort();
+
 //        for(int i = 0; i < this.reducers.length; i++) {
 //            this.reducers[i].Reduce();
 //        }

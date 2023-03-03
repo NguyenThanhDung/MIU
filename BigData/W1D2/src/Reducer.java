@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Reducer {
     List<Pair> inputs;
@@ -14,14 +15,13 @@ public class Reducer {
 
     public void Receive(Pair[] input) {
         for (Pair pair : input) {
-            Add(pair);
+            this.inputs.add(pair);
         }
     }
 
-    public void Add(Pair pair) {
-        this.inputs.add(pair);
+    public void Sort() {
+        this.inputs = this.inputs.stream().sorted((a, b) -> a.key.compareTo(b.key)).collect(Collectors.toList());
     }
-
     public void Grouping() {
         for(Pair pair : this.inputs) {
             boolean found = false;
