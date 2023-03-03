@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,7 +21,16 @@ public class Reducer {
     }
 
     public void Sort() {
-        this.receivedData = this.receivedData.stream().sorted((a, b) -> a.key.compareTo(b.key)).collect(Collectors.toList());
+        this.receivedData = this.receivedData.stream().sorted(GetComparator()).collect(Collectors.toList());
+    }
+
+    public Comparator<Pair> GetComparator() {
+        return new Comparator<Pair>() {
+            @Override
+            public int compare(Pair p1, Pair p2) {
+                return ((String)p1.key).compareTo((String)p2.key);
+            }
+        };
     }
 
     public List<Pair> Run() {
