@@ -58,9 +58,14 @@ public class Reducer<T, U> {
     public List<Pair> Reduce() {
         for (GroupByPair groupByPair : this.inputs) {
             int sum = 0;
-            for (Object value : groupByPair.values)
-                sum += (int) value;
-            Pair pair = new Pair(groupByPair.key, sum);
+            int count = 0;
+            for (Object value : groupByPair.values) {
+                Pair pair = (Pair) value;
+                sum += (int) pair.key;
+                count += (int) pair.value;
+            }
+            double average = (double) sum / count;
+            Pair pair = new Pair(groupByPair.key, average);
             this.outputs.add(pair);
         }
         return this.outputs;
