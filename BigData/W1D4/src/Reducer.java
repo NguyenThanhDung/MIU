@@ -1,8 +1,9 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Reducer {
+public class Reducer<T, U> {
     List<Pair> receivedData;
     List<GroupByPair> inputs;
     List<Pair> outputs;
@@ -20,7 +21,16 @@ public class Reducer {
     }
 
     public void Sort() {
-        this.receivedData = this.receivedData.stream().sorted((a, b) -> a.key.compareTo(b.key)).collect(Collectors.toList());
+        this.receivedData = this.receivedData.stream().sorted(GetComparator()).collect(Collectors.toList());
+    }
+
+    public Comparator<Pair> GetComparator() {
+        return new Comparator<Pair>() {
+            @Override
+            public int compare(Pair p1, Pair p2) {
+                return ((String) p1.key).compareTo((String) p2.key);
+            }
+        };
     }
 
     public List<Pair> Run() {
@@ -29,7 +39,7 @@ public class Reducer {
     }
 
     public void Grouping() {
-        for(Pair pair : this.receivedData) {
+        for (Pair pair : this.receivedData) {
             boolean found = false;
             for (GroupByPair groupByPair : this.inputs) {
                 if (groupByPair.key.equals(pair.key)) {
@@ -46,10 +56,10 @@ public class Reducer {
     }
 
     public List<Pair> Reduce() {
-        for(GroupByPair groupByPair : this.inputs) {
+        for (GroupByPair groupByPair : this.inputs) {
             int sum = 0;
-            for(int value : groupByPair.values)
-                sum += value;
+            for (Object value : groupByPair.values)
+                sum += (int) value;
             Pair pair = new Pair(groupByPair.key, sum);
             this.outputs.add(pair);
         }
