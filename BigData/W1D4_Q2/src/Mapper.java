@@ -50,16 +50,19 @@ public class Mapper<T, U> {
             word = word.toLowerCase();
 
             boolean found = false;
-            for(Pair pair : this.data) {
-                if(pair.key.equals(word)) {
-                    pair.value = (int)pair.value + 1;
+            for (Pair pair : this.data) {
+                if (pair.key.equals(word.substring(0, 1))) {
+                    ((Pair) pair.value).key = (int) ((Pair) pair.value).key + word.length();
+                    ((Pair) pair.value).value = (int) ((Pair) pair.value).value + 1;
                     found = true;
                     break;
                 }
             }
 
-            if(!found) {
-                Pair pair = new Pair(word, 1);
+            if (!found) {
+                String key = word.substring(0, 1);
+                Pair value = new Pair(word.length(), 1);
+                Pair pair = new Pair(key, value);
                 this.data.add(pair);
             }
         }

@@ -6,7 +6,7 @@ import java.nio.file.Paths;
 
 public class Main {
     public static void main(String[] args) {
-        WordCount wordCount = new WordCount(3, 4);
+        WordCount wordCount = new WordCount(4, 3);
         wordCount.Run();
     }
 }
