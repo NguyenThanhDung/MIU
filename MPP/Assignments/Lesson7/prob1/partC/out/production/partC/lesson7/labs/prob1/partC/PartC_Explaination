@@ -1,6 +1,0 @@
-The output is wrong because the 'Employee' class doesn't implement 'hashCode' method
-which should generate hash from the 'name' and 'salary' fields of the 'Employee' class.
-So when putting 'Employee' object to the 'tracker' hash map
-or checking if an 'Employee' object is contained in the 'tracker' hashmap or not,
-the result is not correct.
-Therefore, the
