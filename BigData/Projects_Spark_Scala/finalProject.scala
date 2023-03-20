@@ -34,7 +34,7 @@ sample.foreach(println)
 var arrSample: Array[(String, (Double, Double))] = Array.empty[(String, (Double, Double))]
 
 println("Step 5:")
-var iterTimes = 10
+var iterTimes = 1000
 for (i <- 1 to iterTimes) {
   // 5a. Create a "resampledData"
   val resampledDatasets = sample.sample(true, 1)
