@@ -34,7 +34,8 @@ sample.foreach(println)
 var arrSample: Array[(String, (Double, Double))] = Array.empty[(String, (Double, Double))]
 
 println("Step 5:")
-for (i <- 1 to 10) {
+var iterTimes = 10
+for (i <- 1 to iterTimes) {
   // 5a. Create a "resampledData"
   val resampledDatasets = sample.sample(true, 1)
   
@@ -54,5 +55,5 @@ println("Step 6:")
 import org.apache.spark.rdd.RDD
 val rddSample: RDD[(String, (Double, Double))] = sc.parallelize(arrSample)
 val rddSampleReduced = rddSample.reduceByKey((a, b) => (a._1 + b._1, a._2 + b._2))
-val rddSampleAvg = rddSampleReduced.map(x => (x._1, (x._2 / 10, x._2 / 10)))
+val rddSampleAvg = rddSampleReduced.map(x => (x._1, (x._2 / iterTimes, x._2 / iterTimes)))
 rddSampleAvg.foreach(println)
