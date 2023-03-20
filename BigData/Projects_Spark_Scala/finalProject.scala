@@ -4,10 +4,13 @@ val csv = sc.textFile("OECDGas.csv")
 val rowsWithHeader = csv.map(line => line.split(",").map(_.trim)).map(row => (row(1), row(3)))
 val header = rowsWithHeader.first
 val population = rowsWithHeader.filter(_._1 != header._1).map(row => (row._1.replaceAll("\"", ""), row._2.toDouble))
-val populationGrouped = population.groupByKey()
+println("Step 2:")
+population.foreach(println)
 
 
 // Step 3: Compute the mean mpg and variance for each category
+
+val populationGrouped = population.groupByKey()
 
 def mean(i: Iterable[Double]) = i.sum.toDouble/i.count(_=>true)
 
@@ -18,22 +21,28 @@ def variance(i: Iterable[Double]) = {
 }
 
 val populationMeanVariance = populationGrouped.map(x => (x._1, (mean(x._2), variance(x._2))))
+println("Step 3:")
+populationMeanVariance.foreach(println)
 
 
 // Step 4: Create the sample for bootstrapping
 val sample = population.sample(false, 0.25)
-
+println("Step 4:")
+sample.foreach(println)
 
 // Step 5: Do 1000 times
 var arrSample: Array[(String, (Double, Double))] = Array.empty[(String, (Double, Double))]
 
-for (i <- 1 to 1000) {
+println("Step 5:")
+for (i <- 1 to 10) {
   // 5a. Create a "resampledData"
   val resampledDatasets = sample.sample(true, 1)
   
   // 5b. Compute the mean mpg and variance for each category
   val resampledDatasetsGrouped = resampledDatasets.groupByKey()
   val sampleMeanVariance = resampledDatasetsGrouped.map(x => (x._1, (mean(x._2), variance(x._2))))
+  println("Loop " + i.toString + ":")
+  sampleMeanVariance.foreach(println)
   
   // 5c. Adding the values
   arrSample = arrSample ++ sampleMeanVariance.collect()
@@ -41,7 +50,8 @@ for (i <- 1 to 1000) {
 
 
 // Step 6: Divide each quantity by 1000 to get the average
-val arrSampleAvg = arrSample.map(x => (x._1, (x._2._1 / 1000, x._2._2 / 1000)))
+println("Step 6:")
+val arrSampleAvg = arrSample.map(x => (x._1, (x._2._1 / 10, x._2._2 / 10)))
 import org.apache.spark.rdd.RDD
 val rddSampleAvg: RDD[(String, (Double, Double))] = sc.parallelize(arrSampleAvg)
 val rddSampleAvgReduced = rddSampleAvg.reduceByKey((a, b) => (a._1 + b._1, a._2 + b._2))
