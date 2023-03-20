@@ -31,7 +31,7 @@ println("Step 4:")
 sample.foreach(println)
 
 // Step 5: Do 1000 times
-var arrSample: Array[(String, (Double, Double))] = Array.empty[(String, (Double, Double))]
+var arrSample: Array[(String, (Double, Double, Int))] = Array.empty[(String, (Double, Double, Int))]
 
 println("Step 5:")
 var iterTimes = 10
@@ -46,7 +46,7 @@ for (i <- 1 to iterTimes) {
   sampleMeanVariance.foreach(println)
   
   // 5c. Adding the values
-  arrSample = arrSample ++ sampleMeanVariance.collect()
+  arrSample = arrSample ++ sampleMeanVariance.mapValues(x => (v._1, v._2, 1)).collect()
 }
 
 
@@ -54,6 +54,6 @@ for (i <- 1 to iterTimes) {
 println("Step 6:")
 import org.apache.spark.rdd.RDD
 val rddSample: RDD[(String, (Double, Double))] = sc.parallelize(arrSample)
-val rddSampleReduced = rddSample.reduceByKey((a, b) => (a._1 + b._1, a._2 + b._2))
-val rddSampleAvg = rddSampleReduced.map(x => (x._1, (x._2 / iterTimes, x._2 / iterTimes)))
+val rddSampleReduced = rddSample.reduceByKey((a, b) => (a._1 + b._1, a._2 + b._2, a._3 + b._3))
+val rddSampleAvg = rddSampleReduced.map(x => (x._1, (x._2 / x._3, x._2 / x._3)))
 rddSampleAvg.foreach(println)
