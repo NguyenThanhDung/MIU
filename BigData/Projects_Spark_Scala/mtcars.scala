@@ -32,7 +32,7 @@ val sample = population.sample(false, 0.25)
 sample.foreach(println)
 
 // 5a. Create a "resampledData". All you need to do is take 100% of the sample with replacement.
-val resampledData = sample.takeSample(true, 1)
+val resampledData = sample.takeSample(true, sample.count().toInt)
 
 // 5b. Compute the mean mpg and variance for each category
 
