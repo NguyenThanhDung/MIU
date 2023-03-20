@@ -32,14 +32,20 @@ val sample = population.sample(false, 0.25)
 sample.foreach(println)
 
 // 5a. Create a "resampledData". All you need to do is take 100% of the sample with replacement.
-println("resampledData:")
 val resampledData = sample.takeSample(true, 1)
 
 // 5b. Compute the mean mpg and variance for each category
+
 // Making RDD from parallelized collections:
 val resampledDataRDD = sc.parallelize(resampledData)
+println("resampledDataRDD:")
+resampledDataRDD.foreach(println)
+
 // Group by the categorical variable
 val resampledGroupedRDD = resampledDataRDD.groupByKey()
+println("resampledGroupedRDD:")
+resampledGroupedRDD.foreach(println)
+
 // Compute the mean and variance for each category
 val resampledStatsRDD = resampledGroupedRDD.mapValues(data => {
   val mean = data.sum / data.size
