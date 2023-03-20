@@ -53,7 +53,7 @@ for (i <- 1 to iterTimes) {
 // Step 6: Divide each quantity by 1000 to get the average
 println("Step 6:")
 import org.apache.spark.rdd.RDD
-val rddSample: RDD[(String, (Double, Double))] = sc.parallelize(arrSample)
+val rddSample: RDD[(String, (Double, Double, Int))] = sc.parallelize(arrSample)
 val rddSampleReduced = rddSample.reduceByKey((a, b) => (a._1 + b._1, a._2 + b._2, a._3 + b._3))
 val rddSampleAvg = rddSampleReduced.map(x => (x._1, (x._2 / x._3, x._2 / x._3)))
 rddSampleAvg.foreach(println)
