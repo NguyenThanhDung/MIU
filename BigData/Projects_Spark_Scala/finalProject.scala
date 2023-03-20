@@ -1,6 +1,6 @@
 // Step 2: Select a categorical variable and a numeric variable and form the key-value pair and create a pairRDD called "population"
 
-val csv = sc.textFile("input/OECDGas.csv")
+val csv = sc.textFile("OECDGas.csv")
 val rowsWithHeader = csv.map(line => line.split(",").map(_.trim)).map(row => (row(1), row(3)))
 val header = rowsWithHeader.first
 val population = rowsWithHeader.filter(_._1 != header._1).map(row => (row._1.replaceAll("\"", ""), row._2.toDouble))
