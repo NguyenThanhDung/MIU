@@ -17,7 +17,7 @@ def mean(i: Iterable[Double]) = i.sum.toDouble/i.count(_=>true)
 def variance(i: Iterable[Double]) = { 
   val m = mean(i)
   val b = i.map(x => math.pow(x - m, 2))
-  b.sum / (i.count(_=>true) - 1)
+  b.sum / i.count(_=>true)
 }
 
 val populationMeanVariance = populationGrouped.map(x => (x._1, (mean(x._2), variance(x._2))))
