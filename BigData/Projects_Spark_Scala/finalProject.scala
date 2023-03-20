@@ -46,7 +46,7 @@ for (i <- 1 to iterTimes) {
   sampleMeanVariance.foreach(println)
   
   // 5c. Adding the values
-  arrSample = arrSample ++ sampleMeanVariance.mapValues(x => (v._1, v._2, 1)).collect()
+  arrSample = arrSample ++ sampleMeanVariance.mapValues(x => (x._1, x._2, 1)).collect()
 }
 
 
