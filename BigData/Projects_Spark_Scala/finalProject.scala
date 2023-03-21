@@ -43,7 +43,7 @@ for (i <- 1 to iterTimes) {
   val resampledDatasetsGrouped = resampledDatasets.groupByKey()
   val sampleMeanVariance = resampledDatasetsGrouped.map(x => (x._1, (mean(x._2), variance(x._2))))
   println("Loop " + i.toString + ":")
-  sampleMeanVariance.foreach(println)
+  // sampleMeanVariance.foreach(println)
   
   // 5c. Adding the values
   arrSample = arrSample ++ sampleMeanVariance.mapValues(x => (x._1, x._2, 1)).collect()
